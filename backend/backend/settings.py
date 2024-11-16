@@ -37,6 +37,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'phonenumber_field',
+    #a library to handle phone numbers
+
+    'rest_framework',
+    #allow me to create a restful api to allow communication between react and django
+
+    'corsheaders',
+    #allow me to make requests to the API endpoints i have created
+
+    'accounts',
+    #this is the app that will contain the authentication features
+
+    
+
+
 ]
 
 MIDDLEWARE = [
@@ -47,7 +63,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+AUTH_USER_MODEL = "accounts.RecordsUserAccount"
 
 ROOT_URLCONF = 'backend.urls'
 
