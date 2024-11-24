@@ -44,16 +44,52 @@ INSTALLED_APPS = [
     'rest_framework',
     #allow me to create a restful api to allow communication between react and django
 
+    'rest_auth',
+    #provide endpoints for user authentication and registration
+
+    'rest_framework.authtoken',
+    #provides token based authentication
+
     'corsheaders',
     #allow me to make requests to the API endpoints i have created
+
+    # 'allauth',
+    # #allows users to login using existing social media accounts like Gmail and Google
+    # 'allauth.account',
+    # #allows users to create an account using their email address
+    # 'allauth.socialaccount',
+    # #allows users to login using their social media accounts
+    # 'django.contrib.sites',
+    # #required for allauth
+    # 'allauth.socialaccount.providers.google',
+    # #allows users to login using their Google account
+    # 'allauth.socialaccount.providers.microsoft',
+    # #allows users to login using their Microsoft account
 
     'accounts',
     #this is the app that will contain the authentication features
 
-    
-
-
 ]
+
+#this can be used when usind ALLAUTH and REST_AUTH libraries
+#SITE_ID = 1 
+#this is for when i use allauth
+
+
+# AUTHENTICATION_BACKENDS = [
+#     ...
+#     # Needed to login by username in Django admin, regardless of `allauth`
+#     'django.contrib.auth.backends.ModelBackend',
+
+#     # `allauth` specific authentication methods, such as login by email
+#     'allauth.account.auth_backends.AuthenticationBackend',
+#     ...
+# ]
+
+#ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_USERNAME_REQUIRED = False
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -63,10 +99,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    #adds corsheader middleware
     'corsheaders.middleware.CorsMiddleware',
+
+    # # Add the account middleware
+    # "allauth.account.middleware.AccountMiddleware",
 ]
 
-AUTH_USER_MODEL = "accounts.RecordsUserAccount"
+AUTH_USER_MODEL = 'accounts.RecordsSystemUser'
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -78,9 +121,14 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+
+                # `allauth` needs this from django
                 'django.template.context_processors.request',
+
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                
             ],
         },
     },
