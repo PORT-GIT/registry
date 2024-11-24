@@ -107,7 +107,7 @@ MIDDLEWARE = [
     # "allauth.account.middleware.AccountMiddleware",
 ]
 
-AUTH_USER_MODEL = 'accounts.RecordsSystemUser'
+# AUTH_USER_MODEL = 'accounts.RecordsSystemUser'
 
 CORS_ALLOW_ALL_ORIGINS = True
 

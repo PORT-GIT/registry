@@ -2,9 +2,9 @@ from django.urls import path
 from .views import RecordsOfficerRegisterView, RecordsManagerRegisterView
 
 urlpatterns = [
-    path('accounts/register/officer', RecordsOfficerRegisterView.as_view(), name='officer_register'),
+    path('register_officer/', RecordsOfficerRegisterView.as_view(), name='register_officer'),
 
-    path('accounts/register/manager', RecordsManagerRegisterView.as_view(), name='manager_register'),
+    path('register_manager/', RecordsManagerRegisterView.as_view(), name='register_manager'),
 
 
 ]
