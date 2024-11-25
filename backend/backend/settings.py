@@ -38,17 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'phonenumber_field',
-    #a library to handle phone numbers
 
     'rest_framework',
     #allow me to create a restful api to allow communication between react and django
 
-    'rest_auth',
-    #provide endpoints for user authentication and registration
-
-    'rest_framework.authtoken',
-    #provides token based authentication
+    'rest_framework_simplejwt',
 
     'corsheaders',
     #allow me to make requests to the API endpoints i have created
@@ -69,26 +63,14 @@ INSTALLED_APPS = [
     'accounts',
     #this is the app that will contain the authentication features
 
+    'files',
+    #this is the app that will contain the file management features
+
 ]
 
 #this can be used when usind ALLAUTH and REST_AUTH libraries
 #SITE_ID = 1 
 #this is for when i use allauth
-
-
-# AUTHENTICATION_BACKENDS = [
-#     ...
-#     # Needed to login by username in Django admin, regardless of `allauth`
-#     'django.contrib.auth.backends.ModelBackend',
-
-#     # `allauth` specific authentication methods, such as login by email
-#     'allauth.account.auth_backends.AuthenticationBackend',
-#     ...
-# ]
-
-#ACCOUNT_AUTHENTICATION_METHOD = 'email'
-# ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_USERNAME_REQUIRED = False
 
 
 MIDDLEWARE = [
@@ -107,7 +89,14 @@ MIDDLEWARE = [
     # "allauth.account.middleware.AccountMiddleware",
 ]
 
-# AUTH_USER_MODEL = 'accounts.RecordsSystemUser'
+#adding an object
+REST_FRAMEWORK = {
+    #this will enable JWT Authentication
+    #also tells django to use this in all views 
+    'DEFAULT_AUTHENTICATION_CLASSES' : (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
 CORS_ALLOW_ALL_ORIGINS = True
 

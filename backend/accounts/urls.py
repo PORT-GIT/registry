@@ -1,10 +1,15 @@
 from django.urls import path
-from .views import RecordsOfficerRegisterView, RecordsManagerRegisterView
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 urlpatterns = [
-    path('register_officer/', RecordsOfficerRegisterView.as_view(), name='register_officer'),
+    #this is what will help build the token
+    #below is the access token
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
 
-    path('register_manager/', RecordsManagerRegisterView.as_view(), name='register_manager'),
-
-
+    #below is the refresh token
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    
 ]
